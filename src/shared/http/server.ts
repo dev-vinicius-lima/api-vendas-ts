@@ -3,7 +3,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '../errors/AppError';
-import { AppDataSource } from 'src/shared/typeorm/ormconfig';
+import { AppDataSource } from 'src/shared/database/ormconfig';
 
 const app = express();
 
@@ -26,6 +26,9 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-AppDataSource.initialize().then(() => console.log('Database connected!'));
-
-app.listen(3333, () => console.log('Server is running! on Port: 3333 🔥️🔥️'));
+AppDataSource.initialize().then(() => {
+  console.log('Database connected!');
+  app.listen(3333, () => {
+    console.log('Server is running! on Port: 3333 🔥️🔥️');
+  });
+});

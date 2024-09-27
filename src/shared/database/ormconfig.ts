@@ -8,4 +8,5 @@ export const AppDataSource = new DataSource({
   password: 'docker',
   database: 'apivendas',
   synchronize: true,
+  migrations: [],
 });
